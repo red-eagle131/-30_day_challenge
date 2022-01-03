@@ -1,0 +1,27 @@
+ull getNthUglyNo(int n) {
+	    ull arr[n],s;
+	    arr[0]=1;
+	    ull i2,i3,i5;
+	    i2=i3=i5=0;
+	    ull num2,num3,num5;
+	    for(int i=2;i<=n;i++)
+	    {
+	        num2=arr[i2]*2;
+	        num3=arr[i3]*3;
+	        num5=arr[i5]*5;
+	        if(num2<=num5 && num2<=num3)
+	        s=num2;
+	        else if(num3<=num2 && num3<=num5)
+	        s=num3;
+	        else
+	        s=num5;
+	        arr[i-1]=s;
+	        if(arr[i-1]==num2)
+	        i2++;
+	        if(arr[i-1]==num3)
+	        i3++;
+	        if(arr[i-1]==num5)
+	        i5++;
+	    }
+	    return arr[n-1];
+	}
