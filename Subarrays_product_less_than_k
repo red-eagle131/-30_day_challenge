@@ -1,0 +1,24 @@
+int countSubArrayProductLessThanK(const vector<int>& a, int n, long long k) {
+        long long product=1,r=0;
+        int s=0;
+        for(int i=0;i<a.size();i++)
+        {
+            product=product*a[i];
+            if(product<k)
+            {
+                r=r+(i-s+1);
+                continue;
+            }
+            while(s<a.size() && product>=k)
+            {
+                product=product/a[s];
+                s++;
+            }
+            if(product<k)
+            {
+                r=r+(i-s+1);
+            }
+        }
+        return r;
+}
+        
