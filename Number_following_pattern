@@ -1,0 +1,25 @@
+string printMinNumberForPattern(string S){
+        int k=S.length();
+        string str="";
+        stack<int>s;
+        int c=1;
+        for(int i=0;i<k;i++)
+        {
+            s.push(c++);
+            if(S[i]=='I')
+            {
+                while(s.empty()==false)
+                {
+                    str=str+to_string(s.top());
+                    s.pop();
+                }
+            }
+        }
+        s.push(c);
+        while(s.empty()==false)
+        {
+            str=str+to_string(s.top());
+            s.pop();
+        }
+        return str;
+    }
