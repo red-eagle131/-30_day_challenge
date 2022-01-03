@@ -1,0 +1,23 @@
+string encode(string src)
+{
+    int k=src.length();
+    int l=1;
+    char c=src[0];
+    string str1="";
+    for(int i=1;i<k;i++)
+    {
+        if(c==src[i])
+        l++;
+        else
+        {
+            str1=str1+c;
+            int l1=l;
+            str1=str1+to_string(l1);
+            l=1;
+            c=src[i];
+        }
+    }
+    str1=str1+c;
+    str1=str1+to_string(l);
+    return str1;
+}     
