@@ -1,0 +1,11 @@
+string colName (long long int n)
+    {
+        string res="";
+        while(n>0)
+        {
+            long long int index=(n-1)%26;
+            res=char('A'+index)+res;
+            n=(n-1)/26;
+        }
+        return res;
+    }
