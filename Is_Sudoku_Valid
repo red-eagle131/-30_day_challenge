@@ -1,0 +1,17 @@
+int isValid(vector<vector<int>> board){
+        vector<vector<int> >rows(9,vector<int>(10,0));
+        vector<vector<int> >cols(9,vector<int>(10,0));
+        vector<vector<int> >boxes(9,vector<int>(10,0));
+        for(int i=0;i<9;i++)
+        {
+            for(int j=0;j<9;j++)
+            {
+                if(board[i][j]==0)
+                continue;
+                int num=board[i][j];
+                if (++rows[i][num] > 1 || ++cols[j][num] > 1 || ++boxes[(i/3)*3 + j/3][num] > 1) 
+                return 0;
+            }
+        }
+        return 1;
+    }
