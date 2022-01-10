@@ -1,0 +1,9 @@
+int minSteps(int D){
+        int k=0,i=0;
+        while(k<D || (k-D)%2!=0)
+        {
+            i++;
+            k=k+i;
+        }
+        return i;
+    }
