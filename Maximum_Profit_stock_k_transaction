@@ -1,0 +1,25 @@
+int dp[1001][2][101]; 
+    int buysell(int ind, bool b, int cnt, int prices[],int N)
+    {
+        int buy,sell,idle;
+        if(cnt==0 || N==ind)
+            return 0;
+        if(dp[ind][b][cnt]!=-1)
+            return dp[ind][b][cnt];
+        if(b)
+        {
+            idle = buysell(ind+1, b, cnt, prices,N);
+            buy = -prices[ind] + buysell(ind+1, false, cnt, prices,N);
+            return dp[ind][b][cnt] = max(idle,buy);
+        }
+        else
+        {
+            idle = buysell(ind+1, b, cnt, prices,N);
+            sell = prices[ind] + buysell(ind+1, true, cnt-1, prices,N);
+            return dp[ind][b][cnt] = max(idle,sell);
+        }
+    }
+    int maxProfit(int K, int N, int A[]) {
+        memset(dp, -1, sizeof(dp));
+        return buysell(0,true,K,A,N);
+    }
