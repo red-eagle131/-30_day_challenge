@@ -1,0 +1,30 @@
+string temp="";
+    unordered_map<int,string> keypad={
+    {2, "abc"},
+    {3, "def"},
+    {4, "ghi"},
+    {5, "jkl"},
+    {6, "mno"},
+    {7, "pqrs"},
+    {8, "tuv"},
+    {9, "wxyz"}
+    };
+    void backtrack(int a[],int i,vector<string>& res,int N)
+    {
+        string str=keypad[a[i]];
+        for (auto j=0;j<str.length();j++)
+        {
+            temp+=str[j];
+            if(i==N-1)
+                res.emplace_back(temp);
+            else
+                backtrack(a,i+1,res,N);
+            temp.pop_back(); 
+        }
+    }
+    vector<string> possibleWords(int a[], int N)
+    {
+        vector<string>res;
+        backtrack(a,0,res,N);
+        return res;
+    }
