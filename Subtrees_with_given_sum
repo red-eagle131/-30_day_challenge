@@ -1,0 +1,19 @@
+int ret;
+int helper(Node* root,int x)
+{
+    if(root==NULL)
+    return 0;
+    
+    int left=helper(root->left,x);
+    int right=helper(root->right,x);
+    int q=left+right+root->data;
+    if(q==x)
+    ret++;
+    return q;
+}
+int countSubtreesWithSumX(Node* root, int X)
+{
+    ret=0;
+	helper(root,X);
+	return ret;
+}
