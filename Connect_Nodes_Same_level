@@ -1,0 +1,33 @@
+void connect(Node *root)
+    {
+        queue<Node*>q;
+        q.push(root);
+        root->nextRight=NULL;
+        while(q.empty()==false)
+        {
+            vector<Node*>level;
+            int l=q.size();
+            for(int i=0;i<l;i++)
+            {
+                Node* curr=q.front();
+                q.pop();
+                if(curr->left!=NULL) 
+                {
+                    q.push(curr->left);
+                    level.push_back(curr->left);
+                }
+                if(curr->right!=NULL) 
+                {
+                    q.push(curr->right);
+                    level.push_back(curr->right);
+                }
+            }
+            for(int i=0;i<level.size();i++)
+            {
+                if(i+1==level.size())
+                level[i]->nextRight=NULL;
+                else
+                level[i]->nextRight=level[i+1];
+            }
+        }
+    } 
