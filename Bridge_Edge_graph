@@ -1,0 +1,21 @@
+void dfs(int src,vector<bool>&vis,vector<int>adj[],int c,int d)
+    {
+        vis[src]=true;
+        for(auto i:adj[src])
+        {
+            if((src==c && i==d) || (src==d && i==c))
+            continue;
+            if(!vis[i])
+            dfs(i,vis,adj,c,d);
+        }
+    }
+    int isBridge(int V, vector<int> adj[], int c, int d) 
+    {
+        vector<bool>vis(V,false);
+        dfs(c,vis,adj,c,d);
+        
+        if(vis[d]==false)
+        return 1;
+        
+        return 0;
+    }
