@@ -1,0 +1,28 @@
+vector<string> winner(string arr[],int n)
+    {
+        unordered_map<string,int>m;
+        for(int i=0;i<n;i++)
+        {
+            m[arr[i]]++;
+        }
+        int ma=m[arr[0]];
+        string winner=arr[0];
+        for(int i=1;i<n;i++)
+        {
+            int c=m[arr[i]];
+            string name=arr[i];
+            if(c>ma)
+            {
+                ma=c;
+                winner=name;
+            }
+            else if(c==ma && winner>name)
+            {
+                winner=name;
+            }
+        }
+        vector<string>res;
+        res.push_back(winner);
+        res.push_back(to_string(ma));
+        return res;
+    }
