@@ -1,0 +1,30 @@
+int lis(vector<int>a)
+    {
+        int n=a.size();
+        vector<int>len;
+        for(int i=0;i<n;i++)
+        {
+            auto lb=lower_bound(len.begin(),len.end(),a[i]);
+            if(lb!=len.end())
+            *lb=min(*lb,a[i]);
+            else
+            len.push_back(a[i]);
+        }
+        return len.size();
+    }
+    int minInsAndDel(int a[], int b[], int n, int m) {
+        unordered_set<int> s;
+        for(int i=0;i<m;i++) 
+        s.insert(b[i]);
+        vector<int>a1;
+        int steps=0;
+        for(int i=0;i<n;i++) 
+        {
+            if(s.find(a[i])!=s.end()) 
+            a1.push_back(a[i]);
+            else
+            steps++;
+        }
+        int lis_size = lis(a1);
+        return steps + (a1.size() - lis_size) + (m-lis_size);
+    }
