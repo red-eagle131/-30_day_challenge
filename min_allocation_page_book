@@ -1,0 +1,37 @@
+int check(vector<int>& piles,int mid,int h)
+    {
+        int s=0;
+        for(int i=0;i<piles.size();i++)
+        {
+            int k1=piles[i];
+            if(k1%mid!=0)
+                s=s+(k1/mid)+1;
+            else
+                s=s+(k1/mid);
+        }
+        return s;
+    }
+    int minEatingSpeed(vector<int>& piles, int h) {
+        int m=0,k;
+        for(int i=0;i<piles.size();i++)
+        {
+            m=max(m,piles[i]);
+        }
+        int high=m;
+        int low=1;
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            int q=check(piles,mid,h);
+            if(q>h)
+            {
+                low=mid+1;
+            }
+            else if(q<=h)
+            {
+                k=mid;
+                high=mid-1;
+            }
+        }
+        return k;
+    }
