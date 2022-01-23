@@ -1,0 +1,24 @@
+int minSwaps(vector<vector<int>>& grid) {
+        int n=grid.size(),swaps=0,k;
+        vector<int>rightmost(n);
+        for(int i=0;i<n;i++) 
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(grid[i][j]==1)
+                    rightmost[i]=j;
+            }
+        }
+        for(int i=0;i<n;i++) 
+        {
+            k=i+1; // trick is to sort rows in ascending order
+            while (rightmost[i]>i) 
+            {
+                if(k>=n)
+                    return -1;
+                swap(rightmost[i],rightmost[k++]);
+                ++swaps;
+            }
+        }
+        return swaps;
+    }
