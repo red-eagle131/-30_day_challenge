@@ -1,0 +1,21 @@
+int maxPerformance(int n, vector<int>& speed, vector<int>& efficiency, int k) {
+        vector<pair<int,int>>v(n);
+        for (int i=0;i<n;i++)
+            v[i]={efficiency[i],speed[i]};
+        sort(v.begin(),v.end());
+        reverse(v.begin(),v.end());
+        long sum=0,res=0;
+        priority_queue<int,vector<int>,greater<int>>p; //min heap
+        for(auto& [e,s]: v)
+        {
+            p.emplace(s);
+            sum+=s;
+            if(p.size()>k) 
+            {
+                sum-=p.top();
+                p.pop();
+            }
+            res=max(res,sum*e);
+        }
+        return res%(int)(1e9+7);
+    }
