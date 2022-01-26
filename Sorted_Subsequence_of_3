@@ -1,0 +1,20 @@
+vector<int> find3Numbers(vector<int> arr, int N) {
+        int x=1000000,y=0;
+        int left=0,right=N-1;
+        while(left<right)
+        {
+            x=min(x,arr[left]);
+            y=max(y,arr[right]);
+            if(y>x)
+            {
+                for(int i=left+1;i<right;i++)
+                {
+                    if(arr[i]<y && arr[i]>x)
+                    return {x,arr[i],y};
+                }
+            }
+            left++;
+            right--;
+        }
+        return {};
+    }
